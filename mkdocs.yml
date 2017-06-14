@@ -1,0 +1,13 @@
+site_name: wova
+site_description: Oliver Rice's personal python library
+site_author: Oliver Rice
+repo_url: https://github.com/olirice/https://github.com/olirice/wova.git
+
+theme: readthedocs
+
+pages:
+- Home: index.md
+- About:
+  - Release Notes: about/changelog.md
+  - Contributing: about/contributing.md
+  - License: about/license.md
