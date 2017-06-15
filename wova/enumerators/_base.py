@@ -1,8 +1,6 @@
 from __future__ import print_function
 import sys
 import time
-from inspect import isgenerator
-
 
 def seconds_to_human_string(seconds):
     """
@@ -43,9 +41,9 @@ def monitor(iterable, length=None):
         A generator that yields values from iterable and prints output statistics as consumed
     """
     
-    def print_status(idx, elapsed_time, generator_fl, known_length, end='\r'):
+    def print_status(idx, elapsed_time, known_length, end='\r'):
         # Print partial results if iterable has no len() and argument 'length' not passed e.g. a generator
-        if generator_fl and not known_length:
+        if not known_length:
             print('Row: %8d\t\tElapsed Time: %8s' % 
                   (idx, 
                    seconds_to_human_string(elapsed_time)
@@ -59,12 +57,9 @@ def monitor(iterable, length=None):
                   ), end=end)
         sys.stdout.flush()
     
-    
-    # Is the iterable a generator?
-    is_gen = True if isgenerator(iterable) else False
-    
+     
     # Get length of iterable is available
-    length = len(iterable) if not is_gen else length
+    length = len(iterable) if hasattr(iterable, '__len__') else length
     
     # Start timers
     timer = time.time()
@@ -87,12 +82,12 @@ def monitor(iterable, length=None):
             t_total = current_time - timer
             
             # Print status
-            print_status(ix, t_total, is_gen, length)
+            print_status(ix, t_total, length)
             
         yield value
         
     # Print status on final value
-    print_status(ix, t_total, is_gen, length, end='\n')
+    print_status(ix, t_total, length, end='\n')
     print('Done')
     return
 
