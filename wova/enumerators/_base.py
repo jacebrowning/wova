@@ -56,7 +56,7 @@ def monitor(iterable, length=None):
                   (idx, 
                    seconds_to_human_string(elapsed_time),
                    seconds_to_human_string(((elapsed_time/ix)*known_length)-elapsed_time)
-                  ), end='\r')
+                  ), end=end)
         sys.stdout.flush()
     
     
@@ -68,6 +68,7 @@ def monitor(iterable, length=None):
     
     # Start timers
     timer = time.time()
+    t_total = 0
     
     # Most recent timer check
     last_time = timer
