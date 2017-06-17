@@ -30,3 +30,10 @@ $ python
 >>> wova.__version__
 ```
 
+# Tests
+
+Run tests:
+
+```sh
+$ py.test --cov=wova --cov-report html
+```
