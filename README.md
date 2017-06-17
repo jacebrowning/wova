@@ -1,14 +1,16 @@
-Unix: [![Unix Build Status](https://img.shields.io/travis/olirice/https://github.com/olirice/wova.git/master.svg)](https://travis-ci.org/olirice/https://github.com/olirice/wova.git) Windows: [![Windows Build Status](https://img.shields.io/appveyor/ci/olirice/https://github.com/olirice/wova.git/master.svg)](https://ci.appveyor.com/project/olirice/https://github.com/olirice/wova.git)<br>Metrics: [![Coverage Status](https://img.shields.io/coveralls/olirice/https://github.com/olirice/wova.git/master.svg)](https://coveralls.io/r/olirice/https://github.com/olirice/wova.git) [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/olirice/https://github.com/olirice/wova.git.svg)](https://scrutinizer-ci.com/g/olirice/https://github.com/olirice/wova.git/?branch=master)<br>Usage: [![PyPI Version](https://img.shields.io/pypi/v/wova.svg)](https://pypi.python.org/pypi/wova)
+Unix: [![Unix Build Status](https://img.shields.io/travis/olirice/https://github.com/olirice/wova.git/master.svg)](https://travis-ci.org/olirice/https://github.com/olirice/wova.git) 
+<br>
+Usage: [![PyPI Version](https://img.shields.io/pypi/v/wova.svg)](https://pypi.python.org/pypi/wova)
 
 # Overview
 
-Oliver Rice's personal python library
+A light weight set of tools for data streaming, stream monitoring, and processing big data.
 
 # Setup
 
 ## Requirements
 
-* Python 3.6+
+* Python 2.6+
 
 ## Installation
 
@@ -27,3 +29,4 @@ $ python
 >>> import wova
 >>> wova.__version__
 ```
+

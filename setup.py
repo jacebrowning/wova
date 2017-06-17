@@ -8,7 +8,7 @@ import setuptools
 
 
 PACKAGE_NAME = 'wova'
-MINIMUM_PYTHON_VERSION = '2.7'
+MINIMUM_PYTHON_VERSION = '2.6'
 
 
 def check_python_version():
