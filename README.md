@@ -15,15 +15,7 @@ Oliver Rice's personal python library
 Install wova with pip:
 
 ```sh
-$ pip install wova
-```
-
-or directly from the source code:
-
-```sh
-$ git clone https://github.com/olirice/https://github.com/olirice/wova.git.git
-$ cd https://github.com/olirice/wova.git
-$ python setup.py install
+$ pip install git+https://github.com/olirice/wova.git
 ```
 
 # Usage

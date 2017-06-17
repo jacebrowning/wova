@@ -4,7 +4,6 @@
 
 import os
 import sys
-
 import setuptools
 
 
@@ -53,26 +52,25 @@ setuptools.setup(
 
     packages=setuptools.find_packages(),
 
-    entry_points={'console_scripts': [
-        'wova-cli = wova.cli:main',
-        'wova-gui = wova.gui:main',
-        'concurrency = wova.oconcurrent.futures:__init__',
-    ]},
-
     long_description=build_description(),
     license='MIT',
     classifiers=[
-        # TODO: update this list to match your application: https://pypi.python.org/pypi?%3Aaction=list_classifiers
         'Development Status :: 1 - Planning',
+        'Intended Audience :: Developers',
         'Natural Language :: English',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.6',
+	'Programming Language :: Python :: 2.7',
+	'Programming Language :: Python :: 3',
+	'Programming Language :: Python :: 3.3',
+	'Programming Language :: Python :: 3.4',
+	'Programming Language :: Python :: 3.5',
+	'Programming Language :: Python :: 3.6',
+	"Programming Language :: Python :: Implementation :: CPython"
+	"Programming Language :: Python :: Implementation :: PyPy"
     ],
 
     install_requires=[
-        "testpackage ~= 2.26",
         "six ~= 1.10.0",
         "future ~= 0.16.0",
     ]

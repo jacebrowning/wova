@@ -1,1 +1,1 @@
-from _base import as_completed_buffered
+from wova.concurrent.futures._base import as_completed_buffered

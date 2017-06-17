@@ -1,14 +1,15 @@
+sudo: false
 language: python
 python:
-  - "2.6"
-  - "2.7"
-  - "3.3"
-  - "3.4"
-  - "3.5"
+    #- "2.6"
+    #- "2.7"
+    #- "3.3"
+    #- "3.4"
+    #- "3.5"
   - "3.6"
-  - "3.7-dev"
-  - "pypy"
-  - "pypy3"
+    #- "3.7-dev"
+    #- "pypy"
+    #- "pypy3"
 
 cache:
   pip: true
@@ -20,19 +21,20 @@ env:
     - RANDOM_SEED=0
     - PIPENV_NOSPIN=true
 
-install:
-  - make install
+install: "make"
 
 script:
-  - make check
-  - make test
+  - |
+    if [[ "$TRAVIS_PYTHON_VERSION" != "2.6" ]] ; then make test-readme; fi
+  - make ci
 
-after_success:
-  - pip install coveralls scrutinizer-ocular
-  - coveralls
-  - ocular
-
-notifications:
-  email:
-    on_success: never
-    on_failure: never
+jobs:
+  include:
+    - stage: test
+      script:
+        - |
+          if [[ "$TRAVIS_PYTHON_VERSION" != "2.6" ]] ; then make test-readme; fi
+        - make ci
+    - stage: coverage
+      python: 3.6
+      script: codecov
