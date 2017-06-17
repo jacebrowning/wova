@@ -1,0 +1,8 @@
+pytest>=2.8.0
+codecov
+readme_renderer
+setuptools>=18.5
+docutils
+flake8
+tox
+detox
