@@ -1,4 +1,4 @@
-Unix: [![Unix Build Status](https://img.shields.io/travis/olirice/https://github.com/olirice/wova.git/master.svg)](https://travis-ci.org/olirice/https://github.com/olirice/wova.git) 
+[![Build Status](https://travis-ci.org/olirice/wova.svg?branch=master)](https://travis-ci.org/olirice/wova)
 <br>
 Usage: [![PyPI Version](https://img.shields.io/pypi/v/wova.svg)](https://pypi.python.org/pypi/wova)
 
