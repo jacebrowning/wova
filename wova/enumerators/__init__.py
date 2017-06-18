@@ -1,2 +1,2 @@
-from wova.enumerators._base import monitor
+from wova.enumerators._base import monitor, rate_limit
 
