@@ -2,6 +2,7 @@
 from builtins import range
 
 import pytest   # NOQA # Flake8 ignore 
+import time
 from wova import enumerators as em
 from wova.enumerators._base import seconds_to_human_string
 
@@ -46,3 +47,24 @@ def test_seconds_to_human_string():
     assert seconds_to_human_string(1088) == '18m 08s'
     assert seconds_to_human_string(10000) == '2h 46m 40s'
     assert seconds_to_human_string(100000) == '1d 3h 46m 40s'
+
+
+def test_rate_limitor():
+    """
+    Test that the rate limitor throttles yields
+    """
+
+    DATA = [1, 2, 3, 4, 5]
+
+    ps_10 = em.rate_limit(DATA, per_second=20)
+    pm_600 = em.rate_limit(DATA, per_minute=1200)
+    ph_3600 = em.rate_limit(DATA, per_hour=72000)
+
+    start_time = time.time()
+    [x for x in ps_10]
+    [x for x in pm_600]
+    [x for x in ph_3600]
+    run_time = time.time() - start_time
+
+    assert run_time > 0.74
+    assert run_time < 0.8
