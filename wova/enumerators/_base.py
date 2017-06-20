@@ -77,7 +77,7 @@ def monitor(iterable, length=None):
         # If no update in the last 1 second
         current_time = time.time()
 
-        if current_time - last_time > 0.5:
+        if current_time - last_time > 0.5 and ix > 0:
 
             # Reset Last Time
             last_time = current_time
