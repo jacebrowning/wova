@@ -28,23 +28,24 @@ def as_completed_buffered(future_iterable, buffer_size=None):
     """
     
     # Add an index & convert to tuple
-    future_gen = iter(((ix, fut) for ix, fut in enumerate(future_iterable)))
+    # future_gen = iter(((ix, fut) for ix, fut in enumerate(future_iterable)))
+    future_gen = iter(future_iterable)
 
     # Build the work queue
     if buffer_size:
-        buf = [x for x in future_gen if x[0] < buffer_size]
+        buf = [fut for ix, fut in enumerate(future_gen) if ix < buffer_size]
     else:
-        buf = [x for x in future_gen]
+        buf = [fut for fut in future_gen]
 
     # Iterate remaining futures from iterable
     for future in future_gen:
 
         # Return the next available future
-        v_ix, v_ready = next(as_completed(buf))
+        v_ready = next(as_completed(buf))
         yield v_ready
 
         # Remove completed future from the buffer
-        buf = [(ix, fut) for ix, fut in buf if ix != v_ix]
+        buf = [fut for fut in buf if fut != v_ready]
 
         # Replace the completed work on the buffer
         buf.append(future)
