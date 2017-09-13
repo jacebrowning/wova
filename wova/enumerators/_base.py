@@ -93,7 +93,6 @@ def monitor(iterable, length=None):
     # Print status on final value
     print_status(ix, t_total, length, end='\n')
     print('Done')
-    return
 
 
 def rate_limit(iterable, per_second=None, per_minute=None, per_hour=None):
@@ -130,8 +129,6 @@ def rate_limit(iterable, per_second=None, per_minute=None, per_hour=None):
     for v in iterable:
         yield v
         time.sleep(wait_seconds)
-
-    return
 
 
 
