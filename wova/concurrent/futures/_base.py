@@ -1,28 +1,21 @@
 from __future__ import unicode_literals, print_function, division
-from builtins import zip
-from collections import deque
 from concurrent.futures import as_completed
-from itertools import count
 
 
 def as_completed_buffered(future_iterable, buffer_size=None):
     """
     Purpose:
         Stream an iterable of futures over an executor with a buffer size.
-
         Creating futures consumes all of an input iterator before work starts.
         That is a problem when the data set being processed is large because
         it pulls the entire set into memory
-
     Args:
         future_iterable
             Type: iterable[futures]
             Desc: Iterable of futures to be processed
-
         buffer_size
             Type: int
             Desc: size for processing buffer
-
     Yields:
         completed work from the buffer
     """
@@ -33,7 +26,13 @@ def as_completed_buffered(future_iterable, buffer_size=None):
 
     # Build the work queue
     if buffer_size:
-        buf = [fut for ix, fut in enumerate(future_gen) if ix < buffer_size]
+        buf = []
+        for ix in range(buffer_size):
+            try:
+                buf.append(next(future_gen))
+            except StopIteration:
+                break
+
     else:
         buf = [fut for fut in future_gen]
 
