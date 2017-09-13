@@ -2,7 +2,7 @@ from __future__ import unicode_literals, print_function, division
 from builtins import zip
 from collections import deque
 from concurrent.futures import as_completed
-from itertools import count as icount
+from itertools import count
 
 
 def as_completed_buffered(future_iterable, buffer_size=None):
@@ -26,25 +26,25 @@ def as_completed_buffered(future_iterable, buffer_size=None):
     Yields:
         completed work from the buffer
     """
-    # Convert any input sequence into a consumable generator
-    future_gen = (x for x in future_iterable)
+    
+    # Add an index & convert to tuple
+    future_gen = iter(((ix, fut) for ix, fut in enumerate(future_iterable)))
 
-    # Use buffer if provided, else use inf
-    b_rng = range(buffer_size) if buffer_size else icount()
+    # Build the work queue
+    if buffer_size:
+        buf = [x for x in future_gen if x[0] < buffer_size]
+    else:
+        buf = [x for x in future_gen]
 
-    # Currently Submitted Futures
-    buf = deque(x for _, x in zip(b_rng, future_gen))
-
+    # Iterate remaining futures from iterable
     for future in future_gen:
 
-        # Return the first available future
-        v_ready = next(as_completed(buf))
+        # Return the next available future
+        v_ix, v_ready = next(as_completed(buf))
         yield v_ready
 
         # Remove completed future from the buffer
-        # Slow. This could use work
-        # Used a list comprehension to avoid filter function call overhead
-        buf = [x for x in buf if x != v_ready]
+        buf = [(ix, fut) for ix, fut in buf if ix != v_ix]
 
         # Replace the completed work on the buffer
         buf.append(future)
@@ -53,5 +53,3 @@ def as_completed_buffered(future_iterable, buffer_size=None):
     # Yield remaining work from the buffer as it completes
     for x in as_completed(buf):
         yield x
-
-    return
